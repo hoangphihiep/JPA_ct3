@@ -22,7 +22,7 @@ import vn.iotstar.services.impl.VideoServiceImpl;
 import vn.iotstar.utils.Constant;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
-@WebServlet(urlPatterns = { "/admin/videos","/admin/video/add","/admin/video/insert"})
+@WebServlet(urlPatterns = { "/admin/videos","/admin/video/add","/admin/video/insert","/admin/video/edit","/admin/video/update"})
 public class VideoController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +41,13 @@ public class VideoController extends HttpServlet {
 			List<Category> list = cateService.findAll();
 			req.setAttribute("listcate", list);
 			req.getRequestDispatcher("/views/admin/video-add.jsp").forward(req, resp);
+		}else if (url.contains("/admin/video/edit")) {
+			String id = req.getParameter("id");
+			Video video = videoService.findById(id);
+			req.setAttribute("vide", video);
+			List<Category> list = cateService.findAll();
+			req.setAttribute("listcate", list);
+			req.getRequestDispatcher("/views/admin/video-edit.jsp").forward(req, resp);
 		}
 	}
 	@Override

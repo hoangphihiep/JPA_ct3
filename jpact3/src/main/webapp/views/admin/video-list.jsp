@@ -45,9 +45,9 @@
 			</td>
 			<td>
 				<a
-				href="<c:url value='/admin/category/edit?id=${video.videoId }'/>"
+				href="<c:url value='/admin/video/edit?id=${video.videoId }'/>"
 				class="center">Sửa</a> | <a
-				href="<c:url value='/admin/category/delete?id=${video.videoId }'/>"
+				href="<c:url value='/admin/video/delete?id=${video.videoId }'/>"
 				class="center">Xóa</a>
 			</td>
 		</tr>
