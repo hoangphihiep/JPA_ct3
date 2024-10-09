@@ -32,7 +32,7 @@ public class Video implements Serializable {
 	@Column(name="Description",columnDefinition = "NVARCHAR(MAX)")
 	private String description;
 	
-	@Column(name="Poster")
+	@Column(name="Poster", columnDefinition = "NVARCHAR(MAX)")
 	private String poster;
 	
 	@Column(name="Title", columnDefinition = "NVARCHAR(MAX)")
