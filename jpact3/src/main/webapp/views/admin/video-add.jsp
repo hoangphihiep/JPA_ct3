@@ -33,9 +33,9 @@
   
   
   <label for="status">Status:</label><br>
-  <input type="radio" id="ston" name="status" value="1" ><br>
+  <input type="radio" id="ston" name="status" value="true" ><br>
    <label for="css">Hoạt động</label><br>
-  <input type="radio" id="stoff" name="status" value="0" ><br>
+  <input type="radio" id="stoff" name="status" value="false" ><br>
   <label for="javascript">Khóa</label>
   
   <br><br>
