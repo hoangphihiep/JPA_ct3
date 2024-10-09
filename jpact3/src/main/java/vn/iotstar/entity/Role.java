@@ -16,7 +16,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="role")
-@NamedQuery(name="Role.findAll", query="SELECT r from User r")
+@NamedQuery(name="Role.findAll", query="SELECT r from Role r")
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
