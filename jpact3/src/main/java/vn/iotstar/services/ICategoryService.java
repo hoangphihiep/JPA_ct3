@@ -5,7 +5,7 @@ import java.util.List;
 import vn.iotstar.entity.Category;
 
 public interface ICategoryService {
-	
+
 	void insert(Category category);
 
 	void update(Category category);
@@ -17,4 +17,8 @@ public interface ICategoryService {
 	List<Category> findAll();
 
 	List<Category> findByCategoryname(String catname);
+
+	public List<Category> findAll(int page, int pagesize);
+
+	public int count();
 }

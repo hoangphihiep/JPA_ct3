@@ -16,4 +16,8 @@ public interface ICategoryDao {
 	List<Category> findAll();
 	
 	List<Category> findByCategoryname(String catname);
+	
+	public List<Category> findAll(int page, int pagesize);
+	
+	public int count();
 }

@@ -48,7 +48,6 @@ public class CategoryServiceImpl implements ICategoryService {
 		if (cate != null) {
 			cateDao.delete(id);
 		}
-
 	}
 
 //	@Override
@@ -59,6 +58,16 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Override
 	public List<Category> findByCategoryname(String keyword) {
 		return cateDao.findByCategoryname(keyword);
+	}
+
+	@Override
+	public List<Category> findAll(int page, int pagesize) {
+		return cateDao.findAll(page, pagesize);
+	}
+
+	@Override
+	public int count() {
+		return cateDao.count();
 	}
 
 }

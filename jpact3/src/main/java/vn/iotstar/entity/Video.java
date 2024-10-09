@@ -44,6 +44,4 @@ public class Video implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="CategoryId")
 	private Category category;
-	
-	
 }

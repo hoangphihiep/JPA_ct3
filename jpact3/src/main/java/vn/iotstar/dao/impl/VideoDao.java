@@ -7,19 +7,19 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import vn.iotstar.configs.JPAConfig;
-import vn.iotstar.dao.ICategoryDao;
-import vn.iotstar.entity.Category;
+import vn.iotstar.dao.IVideoDao;
+import vn.iotstar.entity.Video;
 
-public class CategoryDao implements ICategoryDao {
+public class VideoDao implements IVideoDao {
 
 	@Override
-	public void insert(Category category) {
+	public void insert(Video video) {
 		EntityManager enma = JPAConfig.getEntityManager();
 		EntityTransaction trans = enma.getTransaction();
 		try {
 			trans.begin();
 			// gọi phuong thức để insert, update, delete
-			enma.persist(category);
+			enma.persist(video);
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,13 +31,13 @@ public class CategoryDao implements ICategoryDao {
 	}
 
 	@Override
-	public void update(Category category) {
+	public void update(Video video) {
 		EntityManager enma = JPAConfig.getEntityManager();
 		EntityTransaction trans = enma.getTransaction();
 		try {
 			trans.begin();
 			// gọi phuong thức để insert, update, delete
-			enma.merge(category);
+			enma.merge(video);
 			trans.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,15 +49,15 @@ public class CategoryDao implements ICategoryDao {
 	}
 
 	@Override
-	public void delete(int cateid) throws Exception {
+	public void delete(String videoid) throws Exception {
 		EntityManager enma = JPAConfig.getEntityManager();
 		EntityTransaction trans = enma.getTransaction();
 		try {
 			trans.begin();
 			// gọi phuong thức để insert, update, delete
-			Category category = enma.find(Category.class, cateid);
-			if (category != null) {
-				enma.remove(category);
+			Video video = enma.find(Video.class, videoid);
+			if (video != null) {
+				enma.remove(video);
 			} else {
 				throw new Exception("Không tìm thấy");
 			}
@@ -73,33 +73,23 @@ public class CategoryDao implements ICategoryDao {
 	}
 
 	@Override
-	public Category findById(int cateid) {
+	public Video findById(String videoid) {
 		EntityManager enma = JPAConfig.getEntityManager();
-		Category category = enma.find(Category.class, cateid);
-		return category;
+		Video video = enma.find(Video.class, videoid);
+		return video;
 	}
 
 	@Override
-	public List<Category> findAll() {
+	public List<Video> findAll() {
 		EntityManager enma = JPAConfig.getEntityManager();
-		TypedQuery<Category> query = enma.createNamedQuery("Category.findAll", Category.class);
+		TypedQuery<Video> query = enma.createNamedQuery("Video.findAll", Video.class);
 		return query.getResultList();
 	}
 
 	@Override
-	public List<Category> findByCategoryname(String catname) {
+	public List<Video> findAll(int page, int pagesize) {
 		EntityManager enma = JPAConfig.getEntityManager();
-		String jpql = "SELECT c FROM Category c WHERE c.catename like :catname";
-		TypedQuery<Category> query = enma.createQuery(jpql, Category.class);
-		query.setParameter("catename", "%" + catname + "%");
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Category> findAll(int page, int pagesize) {
-
-		EntityManager enma = JPAConfig.getEntityManager();
-		TypedQuery<Category> query = enma.createNamedQuery("Category.findAll", Category.class);
+		TypedQuery<Video> query = enma.createNamedQuery("Video.findAll", Video.class);
 		query.setFirstResult(page * pagesize);
 		query.setMaxResults(pagesize);
 		return query.getResultList();
@@ -107,9 +97,8 @@ public class CategoryDao implements ICategoryDao {
 
 	@Override
 	public int count() {
-		
 		EntityManager enma = JPAConfig.getEntityManager();
-		String jpql = "SELECT count(c) FROM Category c";
+		String jpql = "SELECT count(c) FROM Video c";
 		Query query = enma.createQuery(jpql);
 		return ((Long) query.getSingleResult()).intValue();
 	}
