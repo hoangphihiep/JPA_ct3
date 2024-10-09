@@ -23,7 +23,7 @@
   <label for="phone">Phone:</label><br>
   <input type="text" id="phone" name="phone"><br>
   
-  <label for="email">Phone:</label><br>
+  <label for="email">Email:</label><br>
   <input type="text" id="email" name="email"><br>
   
   <label for="password">Password:</label><br>
